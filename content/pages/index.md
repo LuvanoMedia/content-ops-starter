@@ -29,6 +29,15 @@ sections:
         style: primary
         elementId: ''
         type: Link
+      - type: Link
+        label: Send email
+        altText: Play
+        url: /luca@luvano.co.za
+        showIcon: true
+        icon: mail
+        iconPosition: right
+        style: secondary
+        elementId: ''
     media:
       url: /images/favicon.svg
       altText: Unblock your team boost your time to production preview

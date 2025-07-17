@@ -10,16 +10,7 @@ sections:
     subtitle: 'We don''t meet standards, We set them'
     text: |
       Pop us an email at info\@luvano.co.za and we will assist.
-    actions:
-      - type: Link
-        label: Send email
-        altText: Play
-        url: /luca@luvano.co.za
-        showIcon: true
-        icon: mail
-        iconPosition: right
-        style: secondary
-        elementId: ''
+    actions: []
     media:
       url: /images/favicon.svg
       altText: Unblock your team boost your time to production preview

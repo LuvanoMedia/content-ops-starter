@@ -37,7 +37,7 @@ sections:
       elementId: ''
       type: ImageBlock
     badge:
-      label: Up
+      label: Upgrade your business
       color: text-primary
       type: Badge
     elementId: ''

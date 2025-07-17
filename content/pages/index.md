@@ -31,7 +31,7 @@ sections:
           - pl-16
           - pb-16
           - pr-16
-  - subtitle: that enjoy our service
+  - subtitle: Brands that use Luvano Media
     images:
       - url: /images/empathy-logo.svg
         altText: Empathy logo

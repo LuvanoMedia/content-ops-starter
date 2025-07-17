@@ -31,7 +31,7 @@ sections:
           - pl-16
           - pb-16
           - pr-16
-  - subtitle: Award winning enterprises trust us
+  - subtitle: Brands that use our services
     images:
       - url: /images/empathy-logo.svg
         altText: Empathy logo

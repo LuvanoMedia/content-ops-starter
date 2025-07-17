@@ -1,85 +1,57 @@
-import { marked } from 'marked';
-import PlainTextRenderer from './markdown-plaintext';
-import algoliasearch from 'algoliasearch';
-import { ALGOLIA_APP_ID, ALGOLIA_INDEX_NAME_SUFFIX, ALGOLIA_ADMIN_API_KEY, buildIndexName } from './consts';
-import { allContent } from '../local-content';
+import React, { useState } from 'react';
 
-export async function index() {
-    if (!ALGOLIA_APP_ID || !ALGOLIA_INDEX_NAME_SUFFIX || !ALGOLIA_ADMIN_API_KEY) {
-        throw new Error('Missing required configuration for indexing');
-    }
+export default function Home() {
+  const [showContact, setShowContact] = useState(false);
 
-    console.time('Indexing duration');
-    const data = allContent();
-    const posts = data.pages.filter((p) => p.__metadata.modelName == 'PostLayout');
+  return (
+    <div
+      style={{
+        backgroundColor: '#000000',
+        color: '#ffffff',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '2rem'
+      }}
+    >
+      <h1 style={{ fontSize: '4rem', fontWeight: 'bold', marginBottom: '2rem' }}>
+        Luvano Media
+      </h1>
 
-    const objectsToIndex = buildObjectsToIndex(posts);
-    await indexObjects(objectsToIndex);
-    console.timeEnd('Indexing duration');
+      <button
+        onClick={() => setShowContact(!showContact)}
+        style={{
+          padding: '1rem 2rem',
+          border: '2px solid white',
+          borderRadius: '5px',
+          backgroundColor: 'transparent',
+          color: '#ffffff',
+          fontSize: '1.25rem',
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          transition: 'all 0.3s ease'
+        }}
+        onMouseOver={(e) => {
+          e.target.style.backgroundColor = '#ffffff';
+          e.target.style.color = '#000000';
+        }}
+        onMouseOut={(e) => {
+          e.target.style.backgroundColor = 'transparent';
+          e.target.style.color = '#ffffff';
+        }}
+      >
+        Contact Us
+      </button>
 
-    return objectsToIndex.map((o) => o.url);
-}
-
-function buildObjectsToIndex(posts) {
-    marked.use({ gfm: true });
-    const mdLexer = new marked.Lexer();
-    const mdPlainTextRenderer = new PlainTextRenderer({ spaces: true });
-
-    console.log('Preparing data for indexing...');
-    const objectsToIndex = posts.map((post) => {
-        let o = {
-            objectID: post.__metadata.id,
-            url: post.__metadata.urlPath,
-            slug: post.slug,
-            title: post.title,
-            date: post.date,
-            authorName: post.author?.name,
-            authorImage: post.author?.image?.url,
-            excerpt: post.excerpt,
-            featuredImage: post.featuredImage?.url
-        };
-
-        if (post.content) {
-            const { heading, body } = parseMarkdown(post.content, mdLexer, mdPlainTextRenderer);
-            o.contentHeading = heading;
-            o.contentBody = body;
-        }
-        return o;
-    });
-    return objectsToIndex;
-}
-
-function parseMarkdown(markdown, lexer, renderer) {
-    const body = marked(markdown, { renderer });
-    let heading = null;
-    const tokens = lexer.lex(markdown);
-    for (let token of tokens) {
-        if (token.type === 'heading' && token.depth === 1) {
-            heading = token.text;
-            break;
-        }
-    }
-    return { heading, body };
-}
-
-async function indexObjects(objectsToIndex) {
-    const indexName = buildIndexName();
-    console.log('Indexing to', indexName);
-    const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_API_KEY);
-    const index = client.initIndex(indexName);
-    const response = await index.saveObjects(objectsToIndex);
-    await index.setSettings({
-        searchableAttributes: [
-            'title',
-            'contentHeading',
-            'authorName',
-            'excerpt',
-            'slug',
-            'contentBody',
-            'date'
-        ],
-        customRanking: ['desc(date)']
-    });
-    await client.destroy();
-    console.log(`Indexed ${response.objectIDs.length} objects`);
+      {showContact && (
+        <div style={{ marginTop: '2rem', fontSize: '1.25rem' }}>
+          <p>Email: <a href="mailto:info@luvano.co.za" style={{ color: '#ffffff', textDecoration: 'underline' }}>info@luvano.co.za</a></p>
+          <p>Cell: <a href="tel:+27726195277" style={{ color: '#ffffff', textDecoration: 'underline' }}>072 619 5277</a></p>
+        </div>
+      )}
+    </div>
+  );
 }

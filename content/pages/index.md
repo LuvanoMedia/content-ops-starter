@@ -9,7 +9,7 @@ sections:
       type: TitleBlock
     subtitle: 'We don''t meet standards, We set them'
     text: |
-      We are still working on our website and it will be updated soon
+      Pop us an email at info\@luvano.co.za and we will assist.
     actions:
       - type: Link
         label: Send email

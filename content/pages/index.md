@@ -726,7 +726,7 @@ sections:
 seo:
   metaTitle: Home - Luvano Media
   metaDescription: Welcome to Luvano Media
-  socialImage: /images/main-hero.jpg
+  socialImage: /images/LUVANO (Logo).PNG
   type: Seo
 type: PageLayout
 ---

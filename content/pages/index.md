@@ -725,7 +725,7 @@ sections:
     type: GenericSection
 seo:
   metaTitle: Home - Luvano Media
-  metaDescription: This demo site is built with Netlify Create.
+  metaDescription: Welcome to Luvano Media
   socialImage: /images/main-hero.jpg
   type: Seo
 type: PageLayout

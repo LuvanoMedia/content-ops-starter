@@ -11,15 +11,6 @@ sections:
     text: |
       We are still working on our website and it will be updated soon
     actions:
-      - label: Get started
-        altText: ''
-        url: /
-        showIcon: false
-        icon: arrowRight
-        iconPosition: right
-        style: secondary
-        elementId: ''
-        type: Button
       - type: Link
         label: Send email
         altText: Play

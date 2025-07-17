@@ -1,74 +1,91 @@
-# Content Ops Starter
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Luvano Media</title>
+<style>
+  /* Reset and base */
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
 
-![Content Ops Starter](https://assets.stackbit.com/docs/content-ops-starter-thumb.png)
+  h1 {
+    font-weight: 900;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
 
-Netlify starter that's made for customization with a flexible content model, component library, [visual editing](https://docs.netlify.com/visual-editor/overview/) and [Git Content Source](https://docs.netlify.com/create/content-sources/git/).
+  nav {
+    margin-top: 2rem;
+  }
 
-**⚡ View demo:** [https://content-ops-starter.netlify.app/](https://content-ops-starter.netlify.app/)
+  .contact-tab {
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 2px solid white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+  }
 
-## Table of Contents
+  .contact-tab:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
 
-- [Deploying to Netlify](#deploying-to-netlify)
-- [Develop with Netlify Visual Editor Locally](#develop-with-netlify-visual-editor-locally)
-- [Building for production](#building-for-production)
-- [Setting Up Algolia Search](#setting-up-algolia-search)
-- [Next Steps](#next-steps)
-- [Support](#support)
+  .contact-info {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
 
-## Deploying to Netlify
+  a {
+    color: #ffffff;
+    text-decoration: underline;
+  }
 
-If you click "Deploy to Netlify" button, it will create a new repo for you that looks exactly like this one, and sets that repo up immediately for deployment on Netlify.
+  a:hover {
+    color: #cccccc;
+  }
+</style>
+</head>
+<body>
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/content-ops-starter)
+  <h1>Luvano Media</h1>
 
-## Develop with Netlify Visual Editor Locally
+  <nav>
+    <div class="contact-tab" onclick="toggleContact()">
+      Contact Us
+    </div>
 
-The typical development process is to begin by working locally. Clone this repository, then run `npm install` in its root directory.
+    <div id="contact-info" class="contact-info" style="display: none;">
+      <p>Email: <a href="mailto:info@luvano.co.za">info@luvano.co.za</a></p>
+      <p>Cell: <a href="tel:+27726195277">072 619 5277</a></p>
+    </div>
+  </nav>
 
-Run the Next.js development server:
+  <script>
+    function toggleContact() {
+      const info = document.getElementById('contact-info');
+      if (info.style.display === 'none') {
+        info.style.display = 'block';
+      } else {
+        info.style.display = 'none';
+      }
+    }
+  </script>
 
-```txt
-cd content-ops-starter
-npm run dev
-```
-
-Install the [Netlify Visual Editor CLI](https://www.npmjs.com/package/@stackbit/cli). Then open a new terminal window in the same project directory and run the Netlify visual editor dev server:
-
-```txt
-npm install -g @stackbit/cli
-stackbit dev
-```
-
-This outputs your own Netlify visual editor URL. Open this, register, or sign in, and you will be directed to Netlify's visual editor for your new project.
-
-![Next.js Dev + Visual Editor Dev](https://assets.stackbit.com/docs/next-dev-stackbit-dev.png)
-
-## Building for production
-
-To build a static site for production, run the following command
-
-```shell
-npm run build
-```
-
-## Setting Up Algolia Search
-
-This starter includes Algolia search integration. To set it up:
-
-1. Create an [Algolia](https://www.algolia.com/) account
-2. Create a new application and index
-3. Set the following environment variables:
-   - `NEXT_PUBLIC_ALGOLIA_APP_ID` - Your Algolia application ID
-   - `NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY` - Your Algolia search-only API key
-   - `NEXT_PUBLIC_ALGOLIA_INDEX_NAME` - Your index name
-
-## Next Steps
-
-Here are a few suggestions on what to do next if you're new to Netlify visual editor:
-
-- Learn [Netlify visual editor overview](https://docs.netlify.com/visual-editor/visual-editing/)
-- Check [Netlify visual editor reference documentation](https://visual-editor-reference.netlify.com/)
-
-## Support
-
-If you get stuck along the way, get help in our [support forums](https://answers.netlify.com/).
+</body>
+</html>
